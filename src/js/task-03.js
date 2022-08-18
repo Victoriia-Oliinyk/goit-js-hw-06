@@ -12,27 +12,17 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
-const GALLERY_ITEM_CLASS = 'gallery__item';
-const GALLERY_IMAGE_CLASS = 'gallery__image';
-const GALLERY_IMAGE_WIDTH = 420;
-const GALLERY_IMAGE_HEIGHT = 250;
+const galleryEl = document.querySelector('.gallery');
 
-const galleryListRef = document.querySelector('ul.gallery');
+const makeGalleryItems = images => {
 
-const createGalleryMarkup = images =>
-  images
-    .map(
-      ({ url, alt }) =>
-        `<li class="${GALLERY_ITEM_CLASS}">
-          <img
-            class="${GALLERY_IMAGE_CLASS}"
-            src="${url}"
-            width="${GALLERY_IMAGE_WIDTH}"
-            height="${GALLERY_IMAGE_HEIGHT}"
-            alt="${alt}"
-          />
-        </li>`
+  return images
+    .map(({ url, alt }) => 
+    `<li>
+    <img class="image" src="${url}" alt="${alt}">
+    </li>`      
     )
     .join('');
+}
 
-galleryListRef.insertAdjacentHTML('afterbegin', createGalleryMarkup(images));
+galleryEl.insertAdjacentHTML("afterbegin", makeGalleryItems(images));
